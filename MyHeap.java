@@ -13,8 +13,8 @@ private static void swap(int[] data, int first, int second) {
 //- precondition: index is between 0 and size-1 inclusive
 //- precondition: size is between 0 and data.length-1 inclusive.
 private static void pushDown(int[]data, int size, int index){ //RECURSIVE!!!
-    int c1 = 2*index + 1; //children
-    int c2 = 2*index + 2;
+    int c1 = 2 * index + 1; //children
+    int c2 = 2 * index + 2;
   	if ((data[index] < data[c1] || data[index] < data[c2]) && !(c2 > size)) { //go until child 2 is past the size (at the bottom) and it is less than one of its cildren
   		if (data[c1] > data[index]) { //if child1
   		    swap(data, index, c1); //swap the numbers
@@ -31,8 +31,12 @@ private static void pushDown(int[]data, int size, int index){ //RECURSIVE!!!
 
 //- push the element at index i up into the correct position. This will swap it with the parent node until the parent node is larger or the root is reached. [ should be O(logn) ]
 //- precondition: index is between 0 and data.length-1 inclusive.
-private static void pushUp(int[]data,int index) {
-
+private static void pushUp(int[]data,int index) {//RECURSIVE!!!
+  int p = (index - 1) / 2;//parents
+  	if (!(p < 0) && data[index] > data[p]) { //if number is bigger than parents and ur not at the top yet
+  	    swap(data, index, p); //swap numbers
+  	    pushUp(data, p); //continue to push the number up
+  	}
 }
 
 
