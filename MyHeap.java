@@ -15,8 +15,8 @@ private static void swap(int[] data, int first, int second) {
 private static void pushDown(int[]data, int size, int index){ //RECURSIVE!!!
     int c1 = 2 * index + 1; //children
     int c2 = 2 * index + 2;
-  	if (!(c2 > size) && (data[index] < data[c1] || data[index] < data[c2])) { //go until child 2 is past the size (at the bottom) and it is less than one of its cildren
-  		if (data[c1] > data[c2]) { //if child1
+  	if ((c1 < size) && (data[index] < data[c1] || data[index] < data[c2])) { //go until child 2 is past the size (at the bottom) and it is less than one of its cildren
+  		if ((c2 >= size) || (data[c1] > data[c2])) { //if child1 //WHAT IF THERE IS NO C2
   		    swap(data, index, c1); //swap the numbers
   		    pushDown(data, size, c1); //continue to push the numbers down
   		}
@@ -42,27 +42,29 @@ private static void pushUp(int[]data,int index) {//RECURSIVE!!!
 
 
 //convert the array into a valid heap. [ should be O(n) ]
-//public static void heapify(int[] data){
-
-//}
+public static void heapify(int[] data){
+  for (int i = data.length-1; i >= 0; i--) {
+        pushDown(data, data.length, i);
+  }
+}
 
 
 // sort the array [ should be O(nlogn) ] :
 // converting it into a heap
 // removing the largest value n-1 times (remove places at end of the sub-array).
-//public static void heapsort(int[] data) {
+public static void heapsort(int[] data) {
 
-//}
+}
 
 public static void main(String[] args) {
-  int[] data = new int[] {71,90,40,60,50,51,80,20,30,91};
+  int[] data = new int[] {1,90,40,50,60,51,80,20,30,91};
   System.out.println(heapprinter.toString(data));
   System.out.println();
   System.out.println();
   System.out.println();
   System.out.println();
   int size = data.length;
-  pushDown(data, size, 2);
+  heapify(data);
   System.out.println(heapprinter.toString(data));
 }
 
