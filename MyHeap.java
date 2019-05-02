@@ -60,7 +60,13 @@ public static void heapify(int[] data){
 // converting it into a heap
 // removing the largest value n-1 times (remove places at end of the sub-array).
 public static void heapsort(int[] data) {
-
+  heapify(data); //make into heap
+  int size = data.length; //size
+  for (int i = size-1; i >= 0; i--) {
+    swap(data, 0, i); //remove largest value
+    size--;
+    pushDown(data, size, 0); //reset by pushing down
+  }
 }
 
 public static void main(String[] args) {
