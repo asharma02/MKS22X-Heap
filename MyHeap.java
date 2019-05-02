@@ -69,17 +69,7 @@ public static void heapsort(int[] data) {
   }
 }
 
-public static void main(String[] args) {
-  int[] data = new int[] {1,90,40,30,60,51,80,20,50,91};
-  System.out.println(heapprinter.toString(data));
-  System.out.println();
-  System.out.println();
-  System.out.println();
-  System.out.println();
-  int size = data.length;
-  heapify(data);
-  System.out.println(heapprinter.toString(data));
-}
+
 
 
 
